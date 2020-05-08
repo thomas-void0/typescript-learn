@@ -1,1 +1,1 @@
-let hello:string = "hello ts"
+import "./base/datatype"
