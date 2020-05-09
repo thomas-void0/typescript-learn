@@ -71,3 +71,28 @@ e1 === e3;
 // 字符串枚举的取值，只能是其枚举成员的类型
 let g1:G = G.b;
 let g2:G.a = G.a; //这样就只能取它本身的值了
+
+
+
+// 作业
+enum RoleSet{
+    Reporter = 1,
+    Developer,
+    Student,
+    Theacher,
+    Dog
+}
+
+function initByRole(role:number):void{
+    if(role === RoleSet.Reporter || role === RoleSet.Developer){
+        console.log("the job is:Reporter or Developer")
+    }else if(role === RoleSet.Student || role === RoleSet.Theacher){
+        console.log("the job is:Student or Theacher")
+    }else if (role === RoleSet.Dog){
+        console.log("the job is:Dog")
+    }else{
+        console.log("No permission")
+    }
+}
+
+initByRole(1)
