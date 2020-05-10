@@ -96,3 +96,4 @@ function initByRole(role:number):void{
 }
 
 initByRole(1)
+
