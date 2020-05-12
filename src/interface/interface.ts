@@ -80,3 +80,34 @@ interface Names{
     [z:number]:string;  //这里需要注意的是，数字索引签名的返回值一定要是字符串索引签名的返回值，这是因为js中会进行类型转换。将number转换为string
     // js中对象的key会被自动转换为string类型，所以[z:number]:string;===>[z:string]:string。如果不这么做的话就会产生冲突。
 }
+
+// 函数接口
+let add1:(x:number,y:number)=>number
+
+interface Add{
+    (x:number,y:number):number
+}
+
+type Add2 = (x:number,y:number)=>number
+
+let husa:Add = (a , b)=>a+b;
+
+// 混合类型的接口
+interface Lib{
+    ():void;
+    version:string,
+    doSomething():void;
+}
+
+let lib:Lib = (()=>{}) as Lib; //使用类型断言
+lib.version = '1.0'
+lib.doSomething = () =>{}
+
+function getLib():Lib{
+    let lib:Lib = (()=>{}) as Lib;
+    lib.version = '1.0';
+    lib.doSomething = ()=>{};
+    return lib
+}
+const l1 = getLib()
+const l2 = getLib()
