@@ -23,7 +23,7 @@ class Husky extends Dog{
     constructor(name:string,public color:string){
         super(name) //代表父类的实例
         // 在构造函数中初始化
-        this.color = color;
+        // this.color = color;
     }
     // color:string
 }
