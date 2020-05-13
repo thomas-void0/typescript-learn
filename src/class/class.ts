@@ -31,8 +31,63 @@ class Husky extends Dog{
 console.log(Husky.food)
 
 
+// 抽象类，只能被继承不能被实例化
+abstract class Animal{
+    eat(){
+
+    }
+    // 也可以不指定方法的具体实现
+    abstract sleep():void
+}
+
+// let animal = new Animal()
+
+class Cat extends Animal{
+    constructor(public name:string){
+        super()
+    }
+    run() {}
+    sleep(){
+        console.log("xxxx")
+    }
+}
 
 
+let a:Animal[] = [
+    Reflect.construct(Cat,["卡卡"]),
+    Reflect.construct(Cat,["卡卡2"])
+]
+
+// 使用抽象类可以实现多态。
+
+// 实现链式调用,this类型
+class Work{
+    constructor(public name:string){
+
+    }
+    step1(){
+        return this
+    }
+    step2(){
+        return this
+    }
+}
+
+let w1 = Reflect.construct(Work,['卡卡']);
+w1.step1().step2().step1()
+
+class Job extends Work{
+    constructor(public name:string){
+        super(name)
+    }
+
+    next(){
+        return this;
+    }
+}
+
+let j1 = Reflect.construct(Job,["husa"]);
+j1.next().step1().next().step2()
 
 
 
