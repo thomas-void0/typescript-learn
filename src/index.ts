@@ -6,3 +6,4 @@
 // import "./class-interface/class-interface"
 // import "./generics/generics"
 import "./check/check"
+import "./advanced/advanced"
