@@ -142,4 +142,11 @@ namespace AdvancedType{
 
     // 创建一些新的属性,非同态
     type RecordObj = Record<'x' | 'y',Obj>
+
+
+    // 条件类型
+    //条件类型使得类型具有了不唯一性，增加了语言的灵活性。
+
+    // 分布式条件类型
+    
 }
