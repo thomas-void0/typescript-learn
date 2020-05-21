@@ -146,7 +146,45 @@ namespace AdvancedType{
 
     // 条件类型
     //条件类型使得类型具有了不唯一性，增加了语言的灵活性。
+    // T extends U ? X ： Y；
 
-    // 分布式条件类型
+    // 条件类型的嵌套
+    type TypeName<T> = 
+        T extends string ? 'string' :
+        T extends number ? "number" :
+        T extends boolean ? 'boolean':
+        T extends undefined ? 'undefined':
+        T extends Function ? "function" :
+        "object";
     
+    type T1 = TypeName<string>
+    type T2 = TypeName<number[]>
+    // 分布式条件类型
+    //(A | B) extends U ? X : Y
+    //(A extends U ? X : Y) | (B extends U ? X : Y)
+    type T3 = TypeName<string | number>
+
+    // 可以实现类型的过滤
+    type Diff<T,U> = T extends U ? never : U;
+    type T4 = Diff<'a' | 'b' | 'c','a' | 'e'> 
+    //===> Diff<'a','a' | 'e'>  //never
+    //===> Diff<'b','a' | 'e'>  //'a' | 'e'
+    //===> Diff<'c','a' | 'e'>  //'a' | 'e'
+    //===> 'a' | 'e'
+
+    type NotNull<T>=Diff<T,undefined|null>; 
+    type T5 = NotNull<string | number | undefined | null> 
+    //会过滤掉不是undefined和null的类型
+
+    //官方内置
+    //Exclude<T,U> //抽取中T中不能赋值给U的类型 
+    //NonNullable<T> //排除掉null和undefined
+    //Extract<T,U> //抽取出U中，能够赋值给T的类型
+
+    type T6 = Extract<'a' | 'b' | 'c','a' | 'e'>
+    type T7 = NonNullable<'a' | 'b' | 'c'| null | undefined>
+    type T8 = Exclude<'a'|'b'|'c','a'|'e'>
+
+    //ReturnType<T> //可以获取一个函数返回值的类型
+    type T9 = ReturnType<()=>number>
 }
